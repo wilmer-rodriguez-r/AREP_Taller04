@@ -1,7 +1,6 @@
 package org.example;
 
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.net.ServerSocket;
 
@@ -12,7 +11,7 @@ public class SocketServer {
             ServerSocket serverSocket = new ServerSocket(port);
             while (true) {
                 try {
-                    System.out.println("Listo para recibir ...");
+                    System.out.println("Listening ...");
                     new ClientSocket(serverSocket.accept()).start();
                 } catch (IOException e) {
                     System.err.println("Accept failed.");

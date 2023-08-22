@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.controller.MovieController;
+import org.example.service.MovieService;
 
 import java.io.*;
 import java.net.*;
@@ -37,7 +38,7 @@ public class ClientSocket extends Thread {
             out.close();
             in.close();
             clientSocket.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Oopss, something was wrong");
         }
     }
