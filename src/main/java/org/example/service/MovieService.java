@@ -7,6 +7,6 @@ import java.io.IOException;
 public class MovieService {
 
     public String getMovie(String movie) throws IOException {
-        return MovieController.getMovie();
+        return MovieController.getMovie(movie);
     }
 }

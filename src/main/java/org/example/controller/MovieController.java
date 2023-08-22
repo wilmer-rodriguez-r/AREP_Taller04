@@ -14,7 +14,7 @@ public class MovieController {
     private static final String USER_AGENT = "Mozilla/5.0";
     //private static final String GET_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=fb&apikey=Q1QZFVJQ21K7C6XM";
     //private static final String GET_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo";
-    private static final String GET_URL = "http://www.omdbapi.com/?apikey=f204c1de";
+    private static final String GET_URL = "http://www.omdbapi.com/?apikey=f204c1de&";
 //    public static void main(String[] args) throws IOException {
 //
 //        URL obj = new URL(GET_URL);
@@ -45,8 +45,8 @@ public class MovieController {
 //        System.out.println("GET DONE");
 //    }
 //
-    public static String getMovie() throws IOException {
-        URL obj = new URL(GET_URL);
+    public static String getMovie(String movie) throws IOException {
+        URL obj = new URL(GET_URL + "t=" + movie);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         //con.setRequestProperty("User-Agent", USER_AGENT);
