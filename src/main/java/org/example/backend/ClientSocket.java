@@ -4,6 +4,8 @@ import org.example.backend.controller.MovieController;
 
 import java.io.*;
 import java.net.*;
+import java.util.Objects;
+
 public class ClientSocket extends Thread {
     private final Socket clientSocket;
 
@@ -26,12 +28,7 @@ public class ClientSocket extends Thread {
                     break;
                 }
             }
-            String response = MovieController.getMovie(resource);
-            outputLine = "HTTP/1.1 200 OK \r\n"
-                    + "Access-Control-Allow-Origin: *\r\n"
-                    + "Content-Type: application/json \r\n"
-                    + "\r\n"
-                    + response;
+            outputLine = getResponse(resource);
             out.println(outputLine);
 
             out.close();
@@ -40,5 +37,14 @@ public class ClientSocket extends Thread {
         } catch (Exception e) {
             System.out.println("Oopss, something was wrong");
         }
+    }
+
+    public String getResponse(String resource) throws Exception {
+        String response = MovieController.getMovie(resource);
+        String headers = "HTTP/1.1 200 OK \r\n"
+                + "Access-Control-Allow-Origin: *\r\n"
+                + "Content-Type: application/json \r\n"
+                + "\r\n";
+        return headers + response;
     }
 }

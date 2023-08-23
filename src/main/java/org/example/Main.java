@@ -12,6 +12,6 @@ public class Main {
         socketServer.start();
         HttpServer httpServer = new HttpServer();
         httpServer.start();
-        System.out.println("ready");
+        System.out.println("En ejecución....");
     }
 }
