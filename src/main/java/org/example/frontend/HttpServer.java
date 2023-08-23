@@ -6,9 +6,16 @@ import java.io.PushbackInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/***
+ * Clase que actua de servidor HTTP
+ */
 public class HttpServer extends Thread {
 
-    public int port = 5500;
+    public int port;
+
+    public HttpServer(int port) {
+        this.port = port;
+    }
     @Override
     public void run() {
         try{
@@ -27,6 +34,10 @@ public class HttpServer extends Thread {
         }
     }
 
+    /***
+     * Obtiene el html que mostrara en el browser
+     * @return un String con el html y headers
+     */
     public static String getResponse(){
         return "HTTP/1.1 200 OK \r\n"
                 + "Access-Control-Allow-Origin: *\r\n"
@@ -94,9 +105,17 @@ public class HttpServer extends Thread {
                 "    </body>\n" +
                 "</html>";
     }
+
+    /***
+     * Clase embebida en HttpServer que se ejecuta para mantener la concurrencia del servidor
+     */
     private static class HttpRequestThread extends Thread{
         private final Socket clientSocket;
 
+        /***
+         * Constructor de la clase HttpRequestThread
+         * @param socket un Socket que le otorga el servidor para comunicarse con el
+         */
         public HttpRequestThread(Socket socket) {
             this.clientSocket = socket;
         }

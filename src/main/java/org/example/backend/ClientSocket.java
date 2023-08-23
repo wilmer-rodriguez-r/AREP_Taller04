@@ -6,9 +6,16 @@ import java.io.*;
 import java.net.*;
 import java.util.Objects;
 
+/***
+ * Clase que se encarga de manejar varios clients por medio de Threads
+ */
 public class ClientSocket extends Thread {
     private final Socket clientSocket;
 
+    /***
+     * Constructor de la clase ClientSocket
+     * @param socket recibe un Socket correspondiente al que le da el servidor
+     */
     public ClientSocket(Socket socket) {
         this.clientSocket = socket;
     }
@@ -39,7 +46,13 @@ public class ClientSocket extends Thread {
         }
     }
 
-    public String getResponse(String resource) throws Exception {
+    /***
+     * Devuelve una reapuesta lista para enviar por el socket
+     * @param resource un string que corresponde al recurso que se esta consultando
+     * @return un String con el request listo para enviar
+     * @throws Exception en caso de que no se encuentre el recurso solicitado
+     */
+    private String getResponse(String resource) throws Exception {
         String response = MovieController.getMovie(resource);
         String headers = "HTTP/1.1 200 OK \r\n"
                 + "Access-Control-Allow-Origin: *\r\n"

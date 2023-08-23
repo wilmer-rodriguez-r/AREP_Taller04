@@ -1,6 +1,13 @@
 package org.example.clientTestConcurrency;
 
+/***
+ * Clase principal para el test de concurrencia
+ */
 public class MainTest {
+    /***
+     * Función main que ejecuta el test de concurrencia
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             String url = "http://localhost:35000/";

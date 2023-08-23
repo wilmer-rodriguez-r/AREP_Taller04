@@ -4,12 +4,21 @@ package org.example.backend;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/***
+ * Clase que se encarga de iniciar el socket server y adicionalmente crear los clients
+ */
 public class SocketServer extends Thread {
 
     private final int port;
+
+    /***
+     * Constructor de la clse SocketServer
+     * @param port un int que recibe el puerto por donde correra el Server Socket
+     */
     public SocketServer(int port) {
         this.port = port;
     }
+
     @Override
     public void run() {
         try{
