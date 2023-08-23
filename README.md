@@ -104,6 +104,10 @@ Como ya mencionamos anteriormente el proyecto está dividido en capas, por lo qu
 * Persistence, esta se encarga de exponer las funcionalidades de la base de datos, en este caso sería con la clase que guarda las consultas en cache.
 
 Adicionalmente en cada clase se construyó pensando en el principio de single responsability para cada función, lo que permite que sea más modularizado.
+
+
+También para respetar la arquitectura que se nos planteó, se hizo que el Web Client ejecutara en un puerto distinto al Backend para poder tener separada lo mejor posible a nivel lógico el proyecto.
+
 ## Agradecimientos
 
 * Luis Daniel Benavides Navarro
