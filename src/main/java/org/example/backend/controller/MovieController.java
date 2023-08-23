@@ -1,6 +1,6 @@
-package org.example.controller;
+package org.example.backend.controller;
 
-import org.example.service.MovieService;
+import org.example.backend.service.MovieService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

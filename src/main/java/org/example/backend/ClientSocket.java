@@ -1,7 +1,6 @@
-package org.example;
+package org.example.backend;
 
-import org.example.controller.MovieController;
-import org.example.service.MovieService;
+import org.example.backend.controller.MovieController;
 
 import java.io.*;
 import java.net.*;

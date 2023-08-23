@@ -1,9 +1,6 @@
-package org.example.service;
+package org.example.backend.service;
 
-import org.example.controller.MovieController;
-import org.example.persistence.MoviePersistence;
-
-import java.io.IOException;
+import org.example.backend.persistence.MoviePersistence;
 
 public class MovieService {
 

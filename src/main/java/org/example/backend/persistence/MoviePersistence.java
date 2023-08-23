@@ -1,6 +1,5 @@
-package org.example.persistence;
+package org.example.backend.persistence;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MoviePersistence {

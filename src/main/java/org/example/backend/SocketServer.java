@@ -1,12 +1,17 @@
-package org.example;
+package org.example.backend;
 
 
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class SocketServer {
+public class SocketServer extends Thread {
 
-    public static void startSocket(int port) {
+    private final int port;
+    public SocketServer(int port) {
+        this.port = port;
+    }
+    @Override
+    public void run() {
         try{
             ServerSocket serverSocket = new ServerSocket(port);
             while (true) {
