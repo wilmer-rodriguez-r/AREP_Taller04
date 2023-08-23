@@ -16,7 +16,7 @@ public class MovieService {
         return instance;
     }
 
-    public static String getMovie(String movie) throws Exception {
+    public String getMovie(String movie) throws Exception {
         if (moviePersistence.containsMovie(movie)) {
             return moviePersistence.getMovie(movie);
         } else {
@@ -24,7 +24,7 @@ public class MovieService {
         }
     }
 
-    public static void addMovie(String movie, String data) throws Exception {
+    public void addMovie(String movie, String data) throws Exception {
         if (!moviePersistence.containsMovie(movie)) {
             moviePersistence.addMovie(movie, data);
         } else {

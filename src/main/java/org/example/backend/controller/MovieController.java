@@ -29,11 +29,11 @@ public class MovieController {
 
     public static String getMovie(String movie) throws Exception {
         try {
-            return MovieService.getMovie(movie);
+            return movieService.getMovie(movie);
         } catch (Exception e) {
             URL obj = new URL(GET_URL + "t=" + movie);
             String response = makeRequest(obj);
-            MovieService.addMovie(movie, response);
+            movieService.addMovie(movie, response);
             return response;
         }
     }

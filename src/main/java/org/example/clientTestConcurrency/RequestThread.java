@@ -1,4 +1,4 @@
-package org.example.testConcurrency;
+package org.example.clientTestConcurrency;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
