@@ -6,7 +6,7 @@ package org.example.clientTestConcurrency;
 public class MainTest {
     /***
      * Función main que ejecuta el test de concurrencia
-     * @param args
+     * @param args un String[] donde puede recibir parametros
      */
     public static void main(String[] args) {
         try {

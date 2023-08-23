@@ -12,7 +12,7 @@ public class Main {
 
     /***
      * Función que ejecuta el servidor http y el backend en sus repectivos puertos.
-     * @param args
+     * @param args un String[] donde puede recibir parametros
      */
     public static void main(String[] args) {
         MovieController.getInstance();

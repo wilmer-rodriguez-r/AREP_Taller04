@@ -8,17 +8,17 @@ Este proyecto es sobre la implementación de una arquitectura que se nos propone
 * Git 
 * Java
 * Maven
-* Algun IDE, este es importante si se quiere realizar el test de concurrencia
+* Algún IDE, este es importante si se quiere realizar el test de concurrencia
 
 ### Instalando el proyecto
 
-Lo primero será traer del repositorio remoto el proyecto a la maquina local, para esto ejecutamos el siguiente comando por medio de consola.
+Lo primero será traer del repositorio remoto el proyecto a la máquina local, para esto ejecutamos el siguiente comando por medio de consola.
 
 ```
 git clone https://github.com/wilmer-rodriguez-r/AREM_Taller01
 ```
 
-Esto creara un directorio nuevo donde accederemos y ejecutaremos el siguiente comando.
+Esto creará un directorio nuevo donde accederemos y ejecutaremos el siguiente comando.
 
 ```
 mvn package
@@ -27,7 +27,7 @@ Lo anterior fue para traer dependencias y demás que puedan ser necesarios para 
 ```
 mvn exec:java
 ```
-Eso hará que ya estén en ejecución los servicios. Para corroborar esto puedes entrar al siguiente enlace donde esta predeterminado el [servidor web](http://localhost:5500) o en caso contrario ingresa la siguiente url en tu navegador http://localhost:5500.
+Eso hará que ya estén en ejecución los servicios. Para corroborar esto puedes entrar al siguiente enlace donde está predeterminado el [servidor web](http://localhost:5500) o en caso contrario ingresa la siguiente url en tu navegador http://localhost:5500.
 
 Si buscamos una película debería mostrarnos algo parecido a lo siguiente.
 
@@ -55,8 +55,18 @@ Esto enviará tantas peticiones queramos, en este caso 10000, y nos devolverá e
 ![image](https://github.com/wilmer-rodriguez-r/AREM_Taller01/assets/77862048/0070d655-d6b0-4912-869a-d40115ffadc1)
 
 En caso de que algún hilo no pueda consultar el servidor fachada el test se detendrá automáticamente y marcara que la respuesta de los request fue **false**, es decir que fallaron.
-## Documentacion
+## Documentación
+Primero debemos ejecutar el siguiente comando para crear la documentación.
+```
+mvn javadoc:javadoc
+```
+En la siguiente ruta desde nuestra carpeta del proyecto podemos encontrar la documentación.
 
+```
+./target/site/apidocs
+```
+Si ingresamos a esta podemos ver que hay un index.html que al abrir nos mostrara la siguiente pagina.
+![img.png](img.png)
 ## Construido con
 
 * [Maven](https://maven.apache.org/) - Administrador de dependencias

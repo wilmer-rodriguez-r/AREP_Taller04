@@ -11,8 +11,12 @@ import java.net.Socket;
  */
 public class HttpServer extends Thread {
 
-    public int port;
+    private final int port;
 
+    /***
+     * Constructor de la clase HttpServer
+     * @param port un int que corresponde al puerto donde correra
+     */
     public HttpServer(int port) {
         this.port = port;
     }
