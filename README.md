@@ -66,7 +66,7 @@ En la siguiente ruta desde nuestra carpeta del proyecto podemos encontrar la doc
 ./target/site/apidocs
 ```
 Si ingresamos a esta podemos ver que hay un index.html que al abrir nos mostrara la siguiente pagina.
-![img.png](img.png)
+![img.png](src/main/resources/public/img.png)
 ## Construido con
 
 * [Maven](https://maven.apache.org/) - Administrador de dependencias
