@@ -30,6 +30,11 @@ Eso hará que ya estén en ejecución los servicios. Para corroborar esto puedes
 
 Al ingresar verás lo siguiente:
 
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller02/assets/77862048/69bee8ff-2dcb-4eee-a2e5-1ab4065a8d20)
+
+Si en algún momento escribes mal la URL puede que tengas el siguiente mensaje:
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller02/assets/77862048/b5c2c1c7-e286-4662-a58f-19e89ac0bf29)
+
 
 ## Corriendo los tests
 
@@ -39,6 +44,9 @@ En este proyecto se hicieron test para corroborar el funcionamiento a la hora de
 mvn test
 ```
 Y deben pasar cuatro test que fueron los que corroboran si se leen los archivos correctamente.
+
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller02/assets/77862048/40802f9d-c711-4bcc-8d75-2741a1af148a)
+
 
 ## Documentación
 Primero debemos ejecutar el siguiente comando para crear la documentación.
@@ -51,6 +59,8 @@ En la siguiente ruta desde nuestra carpeta del proyecto podemos encontrar la doc
 ./target/site/apidocs
 ```
 Si ingresamos a esta podemos ver que hay un index.html que al abrir nos mostrara la siguiente pagina.
+
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller02/assets/77862048/51c5b988-4b01-4a6d-9143-077fc6d6bab1)
 
 ## Construido con
 
