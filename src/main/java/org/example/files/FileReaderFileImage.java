@@ -9,8 +9,15 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URI;
 
+/***
+ * Clase que se encarga de leer los archivos imágenes y enviarlas al cliente.
+ */
 public class FileReaderFileImage extends FileReader {
 
+    /***
+     * Constructor de la clase
+     * @param content_type (String) el MIME type del archivo a leer.
+     */
     public FileReaderFileImage(String content_type) {
         super(content_type);
     }
