@@ -1,0 +1,37 @@
+body {
+  height: 800px;
+  background-image: url("fondo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+h1 {
+  color: whitesmoke;
+}
+p {
+  color: gray;
+}
+
+.div-main{
+  background-color: rgba(0, 0, 0, 0.712);
+  text-align: center;
+  position: relative;
+  place-items: center;
+}
+
+.div-sec{
+  background-color: rgba(17, 0, 78, 0.726);
+}
+
+.div-js{
+  background-color: rgba(17, 0, 78, 0.726);
+  text-align: center;
+}
+
+.div-script {
+  height: 448px;
+  width: 860px;
+  background: url("cat.jpg");
+  background-repeat: no-repeat;
+}

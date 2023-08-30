@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class FileReaderFileText implements FileReader {
+public class FileReaderFileText extends FileReader {
 
-    private final String content_types;
     public FileReaderFileText(String content_type) {
-        this.content_types = content_type;
+        super(content_type);
     }
 
     @Override

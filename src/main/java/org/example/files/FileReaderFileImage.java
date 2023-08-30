@@ -9,13 +9,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URI;
 
-public class FileReaderFileImage implements FileReader {
+public class FileReaderFileImage extends FileReader {
 
-    private final String content_types;
     public FileReaderFileImage(String content_type) {
-        this.content_types = content_type;
+        super(content_type);
     }
-
 
     @Override
     public void readFile(URI path, Socket clientSocket) throws IOException {
