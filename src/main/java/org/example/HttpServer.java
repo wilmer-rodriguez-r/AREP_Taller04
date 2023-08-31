@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.MiniSpark;
 import org.example.files.FileReader;
 import org.example.files.exception.ExceptionFile;
 import org.example.files.filesFactory.*;
@@ -14,6 +15,8 @@ public class HttpServer{
 
     private final FilesFactoryInterface factoryFiles;
     private final int port;
+
+    private String resource;
 
     /***
      * Constructor de la clase HttpServer
@@ -35,9 +38,8 @@ public class HttpServer{
                     System.out.println("Listening ...");
                     Socket clientSocket = serverSocket.accept();
                     try {
-                        URI uri = getResource(clientSocket);
-                        System.out.println(uri.getPath());
-                        readFile(uri, clientSocket);
+                        getResource(clientSocket);
+                        readFile();
                         clientSocket.close();
                     } catch (ExceptionFile e) {
                         badRequest(clientSocket);
@@ -56,32 +58,34 @@ public class HttpServer{
      * @param clientSocket (Socket) Es el socket donde el cliente envío la petición.
      * @return (URI) el path del recurso que se solicita.
      * @throws IOException Cuando se construye mal la salida o entrada.
-     * @throws URISyntaxException Cuando la Uri no está bien construida
      * @throws ExceptionFile Cuando el archivo solicitado no se encuentra
      */
-    public URI getResource(Socket clientSocket) throws IOException, URISyntaxException, ExceptionFile {
+    public void getResource(Socket clientSocket) throws IOException, ExceptionFile {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String inputLine = in.readLine();
         System.out.println("Received: " + inputLine);
-        Pattern pattern_text = Pattern.compile("[0-9a-zA-Z]*\\.(html|jpg|png|js|css|ico|gif)");
+        Pattern pattern_text = Pattern.compile("/.*\\.(html|jpg|png|js|css|ico|gif)");
         Matcher matcher = pattern_text.matcher(inputLine);
         if (matcher.find()) {
-            String path = "./target/classes/public/";
-            return new URI(path + matcher.group());
+            String path = "./target/classes/public";
+            resource = matcher.group();
+            System.out.println(resource);
+            MiniSpark.get(resource, (str -> {
+                try {
+                    factoryFiles.getInstance(str).readFile(URI.create(path + str), clientSocket);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
         }
-        throw new ExceptionFile(ExceptionFile.NOT_FOUND);
     }
 
     /**
      * Lee el archivo solicitado y lo envía al cliente
-     * @param path (URI) la dirección donde se encuentra el recurso que se solicitó
-     * @param clientSocket (Socket) es el socket donde se envía los recursos para el cliente
      * @throws ExceptionFile Cuando no se encuentre el recurso
      */
-    public void readFile(URI path, Socket clientSocket) throws ExceptionFile, IOException {
-        String resource = path.getPath();
-        FileReader fileReader = factoryFiles.getInstance(resource);
-        fileReader.readFile(path, clientSocket);
+    public void readFile() throws ExceptionFile, IOException {
+        MiniSpark.search(resource).send(resource);
     }
 
     /***
