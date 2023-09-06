@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.movies.SocketServer;
 import org.example.movies.controller.MovieController;
+import org.example.serverapi.files.File;
+import org.example.serverapi.files.exception.ExceptionFile;
 import org.example.serverapi.files.filesFactory.FileFactoryImpl;
 import org.example.serverapi.files.filesFactory.FileFactoryInterface;
 import org.example.serverapi.minispark.MiniSpark;
@@ -32,6 +34,9 @@ public class Main {
         exampleMiniSpark();
     }
 
+    /***
+     * Clase que se encarga de exponer endpoints de ejemplo
+     */
     public static void exampleMiniSpark() {
         //persistence
         Map<String, JSONObject> persons = new LinkedHashMap<>();
@@ -53,10 +58,16 @@ public class Main {
         });
         //get Obtener archivos de manera local
         MiniSpark.get("/gato", (request, response) -> {
-            //Creamos una instancia que leerá nuestro archivo
-            FileFactoryInterface fileFactory = new FileFactoryImpl();
-            //
-            return fileFactory.getInstance("/cat.jpg").readFile(URI.create(MiniSpark.path + "/cat.jpg"));
+            try {
+                //Creamos una instancia que leerá nuestro archivo
+                FileFactoryInterface fileFactory = new FileFactoryImpl();
+                //Leemos el archivo dándole el nombre del recurso y la ubicación de este
+                File file = fileFactory.getInstance("/cat.jpg");
+                URI pathFile = URI.create(MiniSpark.path + "/cat.jpg");
+                return file.readFile(pathFile);
+            } catch (Exception e) {
+                throw new ExceptionFile(ExceptionFile.NOT_FOUND);
+            }
         });
     }
 
