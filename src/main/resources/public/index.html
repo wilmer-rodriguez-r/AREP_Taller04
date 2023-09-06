@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="" href="style.css" type="text/css">
     <script src="script.js"></script>
+    <script src="apiclient.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
 <div id="div-main" class="div-main">
@@ -17,11 +19,28 @@
         <p>Funcionando</p>
     </div>
 </div>
+<h1>Movies</h1>
+<label for="name">Name:</label><br>
+<input type="text" id="name" name="name" value="Dead"><br><br>
+<button onclick="app.searchMovieByTittle($('#name').val())">Buscar</button>
 
-<div id="div-js" class="div-js">
-    <button onclick="script.showImage()">Presione</button>
+<div class="sep"></div>
+
+<div class="flex-container">
+
+    <div class="flex-child">
+        <h2 id = "title"></h2>
+        <h4 id = "year"></h4>
+        <h4 id = "genre"></h4>
+        <h4 id = "plot"></h4>
+    </div>
+    
+    <div class="flex-child">
+        <div id="image-movie">
+        </div>
+    </div>
+    
 </div>
-<div id="div-script"></div>
 <a target="_blank" href="https://icons8.com/icon/114494/star-filled">Star Filled</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 </body>
 </html>

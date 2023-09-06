@@ -1,4 +1,4 @@
-package org.example.files.exception;
+package org.example.serverapi.files.exception;
 
 /***
  * Clase que retorna excepciones cuando los archivos no se leen correctamente

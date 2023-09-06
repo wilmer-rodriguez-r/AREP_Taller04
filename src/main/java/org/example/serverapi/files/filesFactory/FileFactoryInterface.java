@@ -1,12 +1,12 @@
-package org.example.files.filesFactory;
+package org.example.serverapi.files.filesFactory;
 
-import org.example.files.FileReader;
-import org.example.files.exception.ExceptionFile;
+import org.example.serverapi.files.File;
+import org.example.serverapi.files.exception.ExceptionFile;
 
 /***
  * Interfaz de la fabrica
  */
-public interface FilesFactoryInterface {
+public interface FileFactoryInterface {
 
     /***
      * Obtienen una instancia de clase correspondiente al recurso que se solicita
@@ -14,6 +14,6 @@ public interface FilesFactoryInterface {
      * @return (FileReader) una instancia que pueda leer el archivo solicitado
      * @throws ExceptionFile En caso de que no se encuentre el archivo
      */
-    FileReader getInstance(String resource) throws ExceptionFile;
+    File getInstance(String resource) throws ExceptionFile;
 
 }

@@ -1,33 +1,32 @@
-package org.example.files.filesFactory;
+package org.example.serverapi.files.filesFactory;
 
-import org.example.files.FileReader;
-import org.example.files.FileReaderFileImage;
-import org.example.files.FileReaderFileText;
-import org.example.files.exception.ExceptionFile;
+import org.example.serverapi.files.File;
+import org.example.serverapi.files.FileImage;
+import org.example.serverapi.files.FileText;
+import org.example.serverapi.files.exception.ExceptionFile;
+
 import java.util.*;
 import java.util.regex.*;
 
 /***
  * Implementación de la fábrica para que retorne las clases correspondientes
  */
-public class FilesFactoryImplementation implements FilesFactoryInterface {
+public class FileFactoryImpl implements FileFactoryInterface {
 
-    private final Map<String, String> contentTypeMap = new HashMap<String, String>() {{
-        put(".html", "text/html");
-        put(".js", "text/javascript");
-        put(".css", "text/css");
-        put(".jpg", "image/jpg");
-        put(".png", "image/javascript");
-        put(".gif", "image/gif");
+    private final List<String> typeImage = new ArrayList<>() {{
+        add(".jpg");
+        add(".png");
+        add(".ico");
+        add(".gif");
     }};
-   private String contentType;
+   private String type;
     @Override
-    public FileReader getInstance(String resource) throws ExceptionFile {
+    public File getInstance(String resource) throws ExceptionFile {
         if (matchRegex(".(jpg|png|ico|gif)$", resource)) {
-            return new FileReaderFileImage(contentType);
+            return new FileImage(type);
         }
         if(matchRegex(".(html|js|css)$", resource)) {
-            return new FileReaderFileText(contentType);
+            return new FileText();
         }
         throw new ExceptionFile(ExceptionFile.NOT_FOUND);
     }
@@ -42,9 +41,11 @@ public class FilesFactoryImplementation implements FilesFactoryInterface {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(resource);
         if (matcher.find()) {
-            contentType = contentTypeMap.get(matcher.group());
+            if (typeImage.contains(matcher.group())) {
+                type = matcher.group();
+            }
             return true;
         }
         return false;
-    };
+    }
 }

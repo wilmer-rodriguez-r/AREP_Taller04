@@ -1,12 +1,18 @@
 body {
   height: 800px;
   background-image: url("fondo.jpg");
+  background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-attachment: fixed;
 }
 h1 {
+  color: whitesmoke;
+}
+h2 {
+  color: whitesmoke;
+}
+h4 {
   color: whitesmoke;
 }
 p {
@@ -35,3 +41,19 @@ p {
   background: url("cat.jpg");
   background-repeat: no-repeat;
 }
+.sep {
+  height: 40px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.877);
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+} 
