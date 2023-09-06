@@ -15,14 +15,14 @@ public class FileImage extends File {
     private final String type;
     /***
      * Constructor de la clase
-     * @param content_type (String) el MIME type del archivo a leer.
+     * @param type (String) el tipo de archivo a leer.
      */
     public FileImage(String type) {
         this.type = type;
     }
 
     /***
-     * Leera el archivo correspondiente y lo enviará al cliente por el socket dado.
+     * Leerá el archivo correspondiente y lo enviará al cliente por el socket dado.
      * @param path (URI) el path donde se encuentra el archivo a leer.
      * @throws IOException En caso de que no se pueda escribir o leer el socket.
      */

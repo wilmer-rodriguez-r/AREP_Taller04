@@ -4,9 +4,12 @@ import org.example.serverapi.minispark.MiniSpark;
 import org.example.serverapi.files.exception.ExceptionFile;
 import org.example.serverapi.files.filesFactory.FileFactoryImpl;
 import org.example.serverapi.files.filesFactory.FileFactoryInterface;
+import org.example.serverapi.minispark.handlers.Request;
+import org.example.serverapi.minispark.handlers.Response;
 
 import java.io.*;
 import java.net.*;
+import java.util.Objects;
 
 /***
  * Clase que actua de servidor HTTP
@@ -16,6 +19,7 @@ public class HttpServer {
     private static FileFactoryInterface filesFactory;
     private static final String[] resources = {"/index.html", "/app.js", "/apiclient.js", "/cat.jpg", "/script.js",
             "/favicon.ico", "/fondo.jpg", "/NotFound.html", "/style.css"};
+
 
     public static void load() {
         filesFactory = new FileFactoryImpl();
@@ -29,4 +33,5 @@ public class HttpServer {
             });
         }
     }
+
 }

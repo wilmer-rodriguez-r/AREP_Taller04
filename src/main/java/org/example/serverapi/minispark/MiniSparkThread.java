@@ -18,36 +18,45 @@ public class MiniSparkThread extends Thread {
     @Override
     public void run() {
         try {
-            byte[] response = getResponse();
-            sendElement(response);
-        } catch (Exception e) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             try {
-                byte[] response = executeLambda("GET /NotFound.html");
-                sendElement(response);
-            } catch (ExceptionFile | IOException ex) {
-                throw new RuntimeException(ex);
+                byte[] response = getResponse(in);
+                sendElement(response, clientSocket);
+            } catch (Exception e) {
+                Response response = new Response("GET /NotFound.html");
+                response.badRequest();
+                sendElement(response.getResponse(), clientSocket);
             }
+            in.close();
+            clientSocket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public byte[] getResponse() throws IOException, ExceptionFile {
-        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String inputLine = in.readLine();
-        System.out.println("Received: " + inputLine);
-        return executeLambda(inputLine);
+    public byte[] getResponse(BufferedReader in) throws IOException, ExceptionFile {
+        StringBuilder headers = new StringBuilder();
+        String headerLine = null;
+        while(!(headerLine = in.readLine()).isEmpty()){
+            headers.append(headerLine).append("\n");
+        }
+        StringBuilder payload = new StringBuilder();
+        while(in.ready()){
+            payload.append((char) in.read());
+        }
+        return executeLambda(headers.toString(), payload.toString());
     }
 
-    public byte[] executeLambda(String inputLine) throws ExceptionFile {
-        Request request = new Request(inputLine);
+    public byte[] executeLambda(String headers, String payload) throws ExceptionFile, IOException {
+        Request request = new Request(headers, payload);
         Response response = new Response(request.getResource());
-        response.setBody(MiniSpark.search(request.getResource()).readFile(request, response));
+        response.setBody(MiniSpark.search(request.getResource(), request.getVerb()).readFile(request, response));
         return response.getResponse();
     }
 
-    public void sendElement(byte[] response) throws IOException {
+    public void sendElement(byte[] response, Socket clientSocket) throws IOException {
         OutputStream out = clientSocket.getOutputStream();
         out.write(response);
         out.close();
     }
-
 }

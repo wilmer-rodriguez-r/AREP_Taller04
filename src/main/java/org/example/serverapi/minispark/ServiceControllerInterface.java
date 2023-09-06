@@ -8,6 +8,6 @@ import java.io.IOException;
 
 public interface ServiceControllerInterface {
 
-    Object readFile(Request request, Response response) throws ExceptionFile;
+    Object readFile(Request request, Response response) throws ExceptionFile, IOException;
 
 }

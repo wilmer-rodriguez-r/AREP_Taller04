@@ -19,7 +19,7 @@ public class FileFactoryImpl implements FileFactoryInterface {
         add(".ico");
         add(".gif");
     }};
-   private String type;
+    private String type;
     @Override
     public File getInstance(String resource) throws ExceptionFile {
         if (matchRegex(".(jpg|png|ico|gif)$", resource)) {

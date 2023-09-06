@@ -8,14 +8,9 @@ import java.util.Scanner;
  */
 public class FileText extends File {
 
-    /***
-     * Constructor de la clase
-     * @param content_type (String) el MIME type del archivo a leer.
-     */
-
 
     /***
-     * Leera el archivo correspondiente y lo enviará al cliente por el socket dado.
+     * Leerá el archivo correspondiente y lo enviará al cliente por el socket dado.
      * @param path (URI) el path donde se encuentra el archivo a leer.
      * @throws IOException En caso de que no se pueda escribir o leer el socket.
      */

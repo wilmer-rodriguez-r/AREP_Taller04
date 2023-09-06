@@ -1,18 +1,27 @@
 package org.example.serverapi.minispark.handlers;
 
+import org.json.JSONObject;
+
+import javax.sound.midi.Soundbank;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Request {
 
-    private HashMap<String, String> params = new HashMap<>();
+    private HashMap<String, String> params = new LinkedHashMap<>();
     private String query;
     private String body;
     private String verb;
 
-    public Request(String args) {
+    public Request(String rawData, String payload) {
+        String args = rawData.split("\n")[0];
+        System.out.println(args);
         setVerb(args);
         setParams(args);
         setQuery(args);
+        setBody(payload);
     }
 
     private void setVerb(String args) {
@@ -33,13 +42,17 @@ public class Request {
 
     private void setQuery(String args) {
         String path = args.split(" ")[1];
-        String query = path.split("\\?")[0];
+        String query = path.split("\\?")[0] + "?";
         if(!params.isEmpty()) {
             for (String param: params.keySet()) {
-                query += "?{"+param+"}";
+                query += "{"+param+"}&";
             }
         }
-        this.query = query;
+        this.query = query.replaceAll(".$", "");
+    }
+
+    public void setBody(String payload) {
+        this.body = payload;
     }
 
     public String getResource() {
@@ -52,6 +65,10 @@ public class Request {
 
     public String getParam(String nameParam) {
         return params.get(nameParam);
+    }
+
+    public JSONObject getBody() {
+        return new JSONObject(body);
     }
 
     public String getVerb() {
