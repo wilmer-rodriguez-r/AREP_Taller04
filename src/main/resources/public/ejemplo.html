@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="" href="style.css" type="text/css">
+    <script src="script.js"></script>
+    <script src="apiclient.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+<h1>Form with GET</h1>
+<form action="/hello">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" value="John"><br><br>
+    <input type="button" value="Submit" onclick="app.get($('#name').val())">
+</form>
+<div id="getrespmsg"></div>
+
+
+<h1>Form with POST</h1>
+<form action="/hellopost">
+    <label for="postName">Name:</label><br>
+    <input type="text" id="postName" name="name" value="John"><br><br>
+    <input type="button" value="Submit" onclick="app.post($('#postName').val())">
+</form>
+
+<div id="postrespmsg"></div>
+
+</body>
+</html>

@@ -1,10 +1,9 @@
 package backend;
 
-import org.example.serverapi.files.exception.ExceptionFile;
-import org.example.serverapi.minispark.MiniSpark;
-import org.example.serverapi.minispark.handlers.Request;
-import org.example.serverapi.minispark.handlers.Response;
-import org.json.JSONObject;
+import org.example.files.exception.ExceptionFile;
+import org.example.miniSpark.MiniSpark;
+import org.example.handlers.Request;
+import org.example.handlers.Response;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -18,8 +17,8 @@ public class SparkTest {
         MiniSpark.get("/test1", (request, response) -> responseExpect);
         //Act
         Request request = new Request("GET /test1", "");
-        Response response = new Response(request.getQuery());
-        String contentResponse = (String) MiniSpark.search(request.getQuery(), request.getVerb()).handle(request, response);
+        Response response = new Response(request.getEndpoint());
+        String contentResponse = (String) MiniSpark.search(request.getEndpoint(), request.getVerb()).handle(request, response);
         //Assert
         assertEquals(contentResponse, responseExpect);
     }
@@ -29,9 +28,9 @@ public class SparkTest {
         //Arrange
         //Act
         Request request = new Request("GET /test", "");
-        Response response = new Response(request.getQuery());
-        System.out.println(request.getQuery());
-        String contentResponse = (String) MiniSpark.search(request.getQuery(), request.getVerb()).handle(request, response);
+        Response response = new Response(request.getEndpoint());
+        System.out.println(request.getEndpoint());
+        String contentResponse = (String) MiniSpark.search(request.getEndpoint(), request.getVerb()).handle(request, response);
         //Assert
     }
 
@@ -43,8 +42,8 @@ public class SparkTest {
         MiniSpark.post("/test2", (request, response) -> responseExpect);
         //Act
         Request request = new Request("POST /test2", payload);
-        Response response = new Response(request.getQuery());
-        String contentResponse = (String) MiniSpark.search(request.getQuery(), request.getVerb()).handle(request, response);
+        Response response = new Response(request.getEndpoint());
+        String contentResponse = (String) MiniSpark.search(request.getEndpoint(), request.getVerb()).handle(request, response);
         //Assert
         assertEquals(request.getBody().toString(), payload);
     }
@@ -54,8 +53,8 @@ public class SparkTest {
         //Arrange
         //Act
         Request request = new Request("POST /test", "");
-        Response response = new Response(request.getQuery());
-        String contentResponse = (String) MiniSpark.search(request.getQuery(), request.getVerb()).handle(request, response);
+        Response response = new Response(request.getEndpoint());
+        String contentResponse = (String) MiniSpark.search(request.getEndpoint(), request.getVerb()).handle(request, response);
         //Assert
     }
 }

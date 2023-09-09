@@ -19,6 +19,10 @@ p {
   color: gray;
 }
 
+div {
+    color: whitesmoke;
+}
+
 .div-main{
   background-color: rgba(0, 0, 0, 0.712);
   text-align: center;

@@ -1,4 +1,4 @@
-package org.example.serverapi.files;
+package org.example.files;
 
 
 import javax.imageio.ImageIO;
@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /***
  * Clase que se encarga de leer los archivos imágenes y enviarlas al cliente.

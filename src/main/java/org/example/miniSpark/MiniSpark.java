@@ -1,7 +1,14 @@
-package org.example.serverapi.minispark;
+package org.example.miniSpark;
+
+import org.example.files.File;
+import org.example.files.exception.ExceptionFile;
+import org.example.files.filesFactory.FileFactoryImpl;
+import org.example.files.filesFactory.FileFactoryInterface;
+import org.json.JSONObject;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URI;
 import java.util.*;
 
 /**
@@ -67,6 +74,7 @@ public class MiniSpark extends Thread{
 
     @Override
     public void run() {
+        exampleMiniSpark();
         try {
             ServerSocket serverSocket = new ServerSocket(port);
             while (true) {
@@ -78,6 +86,43 @@ public class MiniSpark extends Thread{
         } catch (Exception e) {
             System.out.println("Could not listen on port: " + port);
         }
+    }
+
+    /***
+     * Clase que se encarga de exponer endpoints de ejemplo
+     */
+    public static void exampleMiniSpark() {
+        //persistence
+        Map<String, JSONObject> persons = new LinkedHashMap<>();
+        JSONObject dataPerson = new JSONObject();
+        dataPerson.put("nombre", "wilmer");
+        dataPerson.put("apellido", "rodriguez");
+        persons.put("wilmer", dataPerson);
+        //get
+        MiniSpark.get("/persons?{name}", (request, response) -> {
+            String name = request.getParam("name");
+            return persons.get(name);
+        });
+        //post
+        MiniSpark.post("/persons", (request, response) -> {
+            //JSONObject personJson = request.getBody();
+            //String name = (String) personJson.get("nombre");
+            //persons.put(name, personJson);
+            return "The object has just been created";
+        });
+        //get Obtener archivos de manera local
+        MiniSpark.get("/gato", (request, response) -> {
+            try {
+                //Creamos una instancia que leerá nuestro archivo
+                FileFactoryInterface fileFactory = new FileFactoryImpl();
+                //Leemos el archivo dándole el nombre del recurso y la ubicación de este
+                File file = fileFactory.getInstance("/cat.jpg");
+                URI pathFile = URI.create(MiniSpark.path + "/cat.jpg");
+                return file.readFile(pathFile);
+            } catch (Exception e) {
+                throw new ExceptionFile(ExceptionFile.NOT_FOUND);
+            }
+        });
     }
 
 }

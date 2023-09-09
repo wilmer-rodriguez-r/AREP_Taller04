@@ -1,8 +1,8 @@
-package org.example.serverapi.minispark.handlers;
+package org.example.handlers;
 
-import org.example.serverapi.files.FileText;
-import org.example.serverapi.files.exception.ExceptionFile;
-import org.example.serverapi.minispark.MiniSpark;
+import org.example.files.FileText;
+import org.example.files.exception.ExceptionFile;
+import org.example.miniSpark.MiniSpark;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -33,6 +33,8 @@ public class Response {
     private byte[] header;
     private byte[] body = new byte[1024];
     private String contentType = "text/plain";
+
+    private boolean isFile;
 
     /**
      * Constructor de la clase.
@@ -73,6 +75,7 @@ public class Response {
         Pattern pattern = Pattern.compile(".(html|js|css|jpg|png|gif|ico)$");
         Matcher matcher = pattern.matcher(query);
         if (matcher.find()) {
+            isFile = true;
             contentType = contentTypes.get(matcher.group());
         }
         assembler();
@@ -85,6 +88,10 @@ public class Response {
     public void setContentType(String contentType) {
         this.contentType = contentType;
         assembler();
+    }
+
+    public boolean isFile() {
+        return isFile;
     }
 
     /***

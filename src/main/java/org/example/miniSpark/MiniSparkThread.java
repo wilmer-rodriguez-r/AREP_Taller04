@@ -1,8 +1,9 @@
-package org.example.serverapi.minispark;
+package org.example.miniSpark;
 
-import org.example.serverapi.files.exception.ExceptionFile;
-import org.example.serverapi.minispark.handlers.Request;
-import org.example.serverapi.minispark.handlers.Response;
+import org.example.handlers.Request;
+import org.example.handlers.Response;
+import org.example.files.exception.ExceptionFile;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -69,8 +70,8 @@ public class MiniSparkThread extends Thread {
      */
     public byte[] executeLambda(String headers, String payload) throws ExceptionFile {
         Request request = new Request(headers, payload);
-        Response response = new Response(request.getQuery());
-        response.setBody(MiniSpark.search(request.getQuery(), request.getVerb()).handle(request, response));
+        Response response = new Response(request.getEndpoint());
+        response.setBody(MiniSpark.search(request.getEndpoint(), request.getVerb()).handle(request, response));
         return response.getResponse();
     }
 

@@ -1,9 +1,9 @@
-package org.example.serverapi.files.filesFactory;
+package org.example.files.filesFactory;
 
-import org.example.serverapi.files.File;
-import org.example.serverapi.files.FileImage;
-import org.example.serverapi.files.FileText;
-import org.example.serverapi.files.exception.ExceptionFile;
+import org.example.files.File;
+import org.example.files.FileImage;
+import org.example.files.FileText;
+import org.example.files.exception.ExceptionFile;
 
 import java.util.*;
 import java.util.regex.*;

@@ -1,15 +1,12 @@
-package org.example.serverapi.webserver;
+package org.example.miniSpark.webserver;
 
-import org.example.serverapi.minispark.MiniSpark;
-import org.example.serverapi.files.exception.ExceptionFile;
-import org.example.serverapi.files.filesFactory.FileFactoryImpl;
-import org.example.serverapi.files.filesFactory.FileFactoryInterface;
-import org.example.serverapi.minispark.handlers.Request;
-import org.example.serverapi.minispark.handlers.Response;
+import org.example.miniSpark.MiniSpark;
+import org.example.files.exception.ExceptionFile;
+import org.example.files.filesFactory.FileFactoryImpl;
+import org.example.files.filesFactory.FileFactoryInterface;
 
 import java.io.*;
 import java.net.*;
-import java.util.Objects;
 
 /***
  * Clase que actúa de servidor HTTP
@@ -35,7 +32,7 @@ public class HttpServer {
         for(String resource: resources) {
             MiniSpark.get(resource, (request, response) -> {
                 try {
-                    return filesFactory.getInstance(request.getQuery()).readFile(URI.create(MiniSpark.path + request.getQuery()));
+                    return filesFactory.getInstance(request.getEndpoint()).readFile(URI.create(MiniSpark.path + request.getEndpoint()));
                 } catch (IOException e) {
                     throw new ExceptionFile(ExceptionFile.NOT_FOUND);
                 }

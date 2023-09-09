@@ -1,4 +1,4 @@
-package org.example.serverapi.files;
+package org.example.files;
 
 import java.io.IOException;
 import java.net.URI;

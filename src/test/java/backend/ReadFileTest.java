@@ -1,12 +1,12 @@
 package backend;
 
 
-import org.example.serverapi.files.File;
-import org.example.serverapi.files.FileImage;
-import org.example.serverapi.files.FileText;
-import org.example.serverapi.files.exception.ExceptionFile;
-import org.example.serverapi.files.filesFactory.FileFactoryImpl;
-import org.example.serverapi.files.filesFactory.FileFactoryInterface;
+import org.example.files.File;
+import org.example.files.FileImage;
+import org.example.files.FileText;
+import org.example.files.exception.ExceptionFile;
+import org.example.files.filesFactory.FileFactoryImpl;
+import org.example.files.filesFactory.FileFactoryInterface;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
