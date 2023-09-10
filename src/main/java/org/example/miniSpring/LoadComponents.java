@@ -55,31 +55,29 @@ public class LoadComponents {
      */
     public static List<Class<?>> getClasses() throws ClassNotFoundException {
         List<Class<?>> classes = new ArrayList<>();
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         File file = new File(path);
-        getClasses(classLoader, classes, file, "org");
+        getClasses(classes, file, "org");
         return classes;
     }
 
     /**
      * Obtiene todas las clases y las carga.
-     * @param classLoader Classloader que ayuda a cargar las clases.
      * @param classes List con todas las clases que se hayan encontrado.
      * @param file File donde estarán las clases.
      * @param path String con el path actual.
      * @throws ClassNotFoundException Cuando la clase no se encuentra.
      */
-    public static void getClasses(ClassLoader classLoader, List<Class<?>> classes, File file, String path) throws ClassNotFoundException {
+    public static void getClasses(List<Class<?>> classes, File file, String path) throws ClassNotFoundException {
         String fileName = file.getName();
         if (fileName.contains(".class")) {
-            classes.add(classLoader.loadClass(path + "." + fileName.replace(".class", "")));
+            classes.add(Class.forName(path + "." + fileName.replace(".class", "")));
         }
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             assert files != null;
             for (File f : files) {
                 String newPath = path + "." + file.getName();
-                getClasses(classLoader, classes, f, newPath);
+                getClasses(classes, f, newPath);
             }
         }
     }
