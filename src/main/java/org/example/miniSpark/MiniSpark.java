@@ -1,6 +1,6 @@
 package org.example.miniSpark;
 
-import org.example.files.File;
+import org.example.files.FileHandler;
 import org.example.files.exception.ExceptionFile;
 import org.example.files.filesFactory.FileFactoryImpl;
 import org.example.files.filesFactory.FileFactoryInterface;
@@ -116,7 +116,7 @@ public class MiniSpark extends Thread{
                 //Creamos una instancia que leerá nuestro archivo
                 FileFactoryInterface fileFactory = new FileFactoryImpl();
                 //Leemos el archivo dándole el nombre del recurso y la ubicación de este
-                File file = fileFactory.getInstance("/cat.jpg");
+                FileHandler file = fileFactory.getInstance("/cat.jpg");
                 URI pathFile = URI.create(MiniSpark.path + "/cat.jpg");
                 return file.readFile(pathFile);
             } catch (Exception e) {

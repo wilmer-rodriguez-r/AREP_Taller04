@@ -1,6 +1,6 @@
 package org.example.files.filesFactory;
 
-import org.example.files.File;
+import org.example.files.FileHandler;
 import org.example.files.exception.ExceptionFile;
 
 /***
@@ -14,6 +14,6 @@ public interface FileFactoryInterface {
      * @return (FileReader) una instancia que pueda leer el archivo solicitado
      * @throws ExceptionFile En caso de que no se encuentre el archivo
      */
-    File getInstance(String resource) throws ExceptionFile;
+    FileHandler getInstance(String resource) throws ExceptionFile;
 
 }

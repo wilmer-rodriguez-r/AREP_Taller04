@@ -1,8 +1,9 @@
 package org.example.handlers;
 
-import org.example.files.FileText;
+import org.example.files.FileHandlerText;
 import org.example.files.exception.ExceptionFile;
 import org.example.miniSpark.MiniSpark;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -90,6 +91,10 @@ public class Response {
         assembler();
     }
 
+    /**
+     * Si el recurso solicitado es archivo o no.
+     * @return boolean.
+     */
     public boolean isFile() {
         return isFile;
     }
@@ -134,7 +139,7 @@ public class Response {
     public void badRequest() throws ExceptionFile {
         try {
             status = "404";
-            FileText fileText = new FileText();
+            FileHandlerText fileText = new FileHandlerText();
             this.body = fileText.readFile(URI.create(MiniSpark.path + "/NotFound.html"));
             assembler();
         } catch (IOException e) {

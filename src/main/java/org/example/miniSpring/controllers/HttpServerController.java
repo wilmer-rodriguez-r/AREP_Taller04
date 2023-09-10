@@ -11,9 +11,19 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Base64;
 
+/**
+ * Clase controller que se encarga de leer archivos del HttpServer.
+ */
 @Component
 public class HttpServerController {
 
+    /**
+     * Obtiene los archivos del server.
+     * @param request Request que posee la solicitud realizada.
+     * @return String con lo datos del archivo.
+     * @throws ExceptionFile Cuando el archivo no se encuentra.
+     * @throws IOException Cuando no se pueda leer el archivo.
+     */
     @GetMapping("/file")
     public static String getIndex(Request request) throws ExceptionFile, IOException {
         FileFactoryInterface filesFactory = new FileFactoryImpl();
@@ -22,3 +32,4 @@ public class HttpServerController {
         return Base64.getEncoder().encodeToString(bytesFile);
     }
 }
+

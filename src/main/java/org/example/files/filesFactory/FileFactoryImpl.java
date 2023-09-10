@@ -1,8 +1,8 @@
 package org.example.files.filesFactory;
 
-import org.example.files.File;
-import org.example.files.FileImage;
-import org.example.files.FileText;
+import org.example.files.FileHandler;
+import org.example.files.FileHandlerImage;
+import org.example.files.FileHandlerText;
 import org.example.files.exception.ExceptionFile;
 
 import java.util.*;
@@ -21,12 +21,12 @@ public class FileFactoryImpl implements FileFactoryInterface {
     }};
     private String type;
     @Override
-    public File getInstance(String resource) throws ExceptionFile {
+    public FileHandler getInstance(String resource) throws ExceptionFile {
         if (matchRegex(".(jpg|png|ico|gif)$", resource)) {
-            return new FileImage(type);
+            return new FileHandlerImage(type);
         }
         if(matchRegex(".(html|js|css)$", resource)) {
-            return new FileText();
+            return new FileHandlerText();
         }
         throw new ExceptionFile(ExceptionFile.NOT_FOUND);
     }
