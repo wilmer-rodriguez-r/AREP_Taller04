@@ -1,4 +1,4 @@
-# Taller 3 AREP
+# Taller 4 AREP
 En este taller se creó un proyecto similar al framework de Spring, esto es con el objetivo de que apartir de anotaciones podamos crear métodos que se puedan llamar para que resuelvan peticiones GET y POST.
 ## Iniciando
 
@@ -24,7 +24,7 @@ mvn package
 ```
 Lo anterior fue para traer dependencias y demás que puedan ser necesarios para el proyecto, después de esto ejecutamos el siguiente comando para poder correr tanto el servidor web junto a MiniSpring.
 ```
-java -cp target/classes org.example.Main
+mvn exec:java
 ```
 Eso hará que ya estén en ejecución los servicios. Para corroborar esto puedes entrar al siguiente enlace donde está predeterminado el [servidor web](http://localhost:5500/index.html) o en caso contrario ingresa la siguiente url en tu navegador http://localhost:5500/index.html.
 
@@ -73,51 +73,40 @@ Para entender un poco como funciona nuestro MiniSpark lo explicaremos con un eje
 
 En la clase ExampleController encontraremos el siguiente código.
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/e795779a-0159-4dfa-abd7-dd8af7f59948)
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/7e754da2-21e3-41a2-9977-7f71cf3984ea)
 
 Como se puede observar poseemos dos mapeos, uno para GET y otro para POST.
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/e838bcfb-01c6-4082-9224-5b54feb92894)
-
 Ahora, si ingresamos en el siguiente enlace http://localhost:5500/ejemplo.html veremos la siguiente página.
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/dee53358-e0ee-4c0a-a417-478caff72a76)
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/7ef3d219-eaac-439d-b87c-469214c12405)
-
-Vemos que tenemos un GET y otro para POST.
-
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/887cc7fa-3f0b-40b3-974c-1b97fcbabbf6)
+Vemos que tenemos un formulario para GET y otro para POST.
 
 Si intentamos buscar una persona nos podrá salir el siguiente aviso, puesto que aún no tenemos agregada ninguna.
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/3f1a58f8-af73-400e-b0e3-bd579b319184)
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/4fba04d1-ff38-473a-bb52-7709e7a6919a)
 
 Para solucionar esto vamos donde el post y postearemos una nueva persona.
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/83bcecdc-7219-434a-9894-88730ffc1617)
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/b0bfff46-561e-4f8c-bebc-2c7c978e491d)
 
-Como podemos ver no dice que la persona fue agregada.
-
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/c982c8c9-4aa9-4c65-a48c-7974eb2e67e8)
+Como podemos ver nos dice que la persona fue agregada.
 
 Para probar esto, podemos pedir la persona.
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/7682da01-2eb4-45cc-a04e-59d03c8fe212)
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/cedd0b76-d67d-435b-ba95-8cab4b7979e9)
 
 Y observaremos que nos devuelve tanto el nombre como el apellido de esta.
 
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/91ef55e2-a806-481c-9124-ec80b04a5ffd)
-
 Y por medio de la consola podemos corroborar que las peticiones que se han realizarón son GET y POST.
+
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/3d2c30e0-7e38-4aa5-a2bb-61c4000438a4)
+
 
 ## Otros Sistemas Operativos.
 
 Por último con ayuda de Kali Linux correremos nuestro proyecto para ver si en diferentes sistemas operativos puede ejecutarse.
-
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/fa01d3d1-fc5a-40ce-8459-baa11252e778)
-
-Ahora intentaremos consultar.
-
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/06f79c7d-2053-4f18-94a6-5d78aa1d2528)
+![image](https://github.com/wilmer-rodriguez-r/AREP_Taller04/assets/77862048/ee99e80e-0561-487c-977b-ba69c50083a4)
 
 Como podemos ver nuestro proyecto funciona en distintos sistemas operativos sin problema.
 
