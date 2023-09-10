@@ -1,6 +1,5 @@
 # Taller 3 AREP
-En este taller se creó un tipo de servidor que sea capaz de controlar peticiones de tipo GET y POST, esto está basado en el proyecto que es conocido como [Spark](https://sparkjava.com).
-
+En este taller se creó un proyecto similar al framework de Spring, esto es con el objetivo de que apartir de anotaciones podamos crear métodos que se puedan llamar para que resuelvan peticiones GET y POST.
 ## Iniciando
 
 ### Prerrequisitos
@@ -15,7 +14,7 @@ En este taller se creó un tipo de servidor que sea capaz de controlar peticione
 Lo primero será traer del repositorio remoto el proyecto a la máquina local, para esto ejecutamos el siguiente comando por medio de consola.
 
 ```
-git clone https://github.com/wilmer-rodriguez-r/AREP_Taller03.git
+git clone https://github.com/wilmer-rodriguez-r/AREP_Taller04.git
 ```
 
 Esto creará un directorio nuevo donde accederemos y ejecutaremos el siguiente comando.
@@ -23,9 +22,9 @@ Esto creará un directorio nuevo donde accederemos y ejecutaremos el siguiente c
 ```
 mvn package
 ```
-Lo anterior fue para traer dependencias y demás que puedan ser necesarios para el proyecto, después de esto ejecutamos el siguiente comando para poder correr tanto el servidor web como el cliente.
+Lo anterior fue para traer dependencias y demás que puedan ser necesarios para el proyecto, después de esto ejecutamos el siguiente comando para poder correr tanto el servidor web junto a MiniSpring.
 ```
-mvn exec:java
+java -cp target/classes org.example.Main
 ```
 Eso hará que ya estén en ejecución los servicios. Para corroborar esto puedes entrar al siguiente enlace donde está predeterminado el [servidor web](http://localhost:5500/index.html) o en caso contrario ingresa la siguiente url en tu navegador http://localhost:5500/index.html.
 
@@ -39,7 +38,7 @@ Si en algún momento escribes mal la URL puede que tengas el siguiente mensaje:
 
 ## Corriendo los tests
 
-En este proyecto se hicieron test para corroborar el funcionamiento a la hora de leer los archivos que se necesitan enviar, también hay test que corroboran el funcionamiento del MiniSpark y por último los test que verifican la lógica de movies. Para correr los test se ejecuta el siguiente comando.
+En este proyecto se hicieron test para corroborar el funcionamiento a la hora de leer los archivos que se necesitan enviar, también hay test que corroboran el funcionamiento del MiniSpring y por último los test que verifican la lógica de movies. Para correr los test se ejecuta el siguiente comando.
 
 ```
 mvn test
@@ -72,56 +71,47 @@ Esto se hace con el fin de tener modularizado cada componente y poder trabajar s
 
 Para entender un poco como funciona nuestro MiniSpark lo explicaremos con un ejemplo.
 
-En la clase Main encontraremos el siguiente método.
+En la clase ExampleController encontraremos el siguiente código.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/e795779a-0159-4dfa-abd7-dd8af7f59948)
 
-Como podemos ver al principio definimos una estructura de persistencia para nuestras peticiones.
+Como se puede observar poseemos dos mapeos, uno para GET y otro para POST.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/e838bcfb-01c6-4082-9224-5b54feb92894)
 
-En este caso guardamos una persona con su apellido. Si yo quisiera tener los datos de esta persona podria definir el siguiente GET.
+Ahora, si ingresamos en el siguiente enlace http://localhost:5500/ejemplo.html veremos la siguiente página.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/7ef3d219-eaac-439d-b87c-469214c12405)
 
-Donde apartir del endpoint */persons* y el parametro *{name}* obtendre dicha persona y la retornare. Si lo buscamos por navegador con el siguiente link http://localhost:5500/persons?name=wilmer , obtendremos lo siguiente.
+Vemos que tenemos un GET y otro para POST.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/887cc7fa-3f0b-40b3-974c-1b97fcbabbf6)
 
-Si yo intentara buscar otra persona como *laura* la petición fallara puesto que no existe en la persistencia. http://localhost:5500/persons?name=laura.
+Si intentamos buscar una persona nos podrá salir el siguiente aviso, puesto que aún no tenemos agregada ninguna.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/3f1a58f8-af73-400e-b0e3-bd579b319184)
 
-Ahora bien si yo quisiera agregar una nueva personsa con un POST tendria que definir primero el siguiente endpoint.
+Para solucionar esto vamos donde el post y postearemos una nueva persona.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/83bcecdc-7219-434a-9894-88730ffc1617)
 
-Donde apartir del body que reciba lo incluire en la estructura de persistencia que defini. Para ver como funciona este endpoint nos apoyaremos en Postman.
+Como podemos ver no dice que la persona fue agregada.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/c982c8c9-4aa9-4c65-a48c-7974eb2e67e8)
 
-Como podemos ver vamos a crear a *laura* para poder consultarla posteriormente. Al enviar el post veremos la siguiente respuesta.
+Para probar esto, podemos pedir la persona.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/7682da01-2eb4-45cc-a04e-59d03c8fe212)
 
-Lo que significa que nuestro post ha sido exitoso, ahora consultaremos el siguiente link http://localhost:5500/persons?name=laura y podremos observar lo siguiente.
+Y observaremos que nos devuelve tanto el nombre como el apellido de esta.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/91ef55e2-a806-481c-9124-ec80b04a5ffd)
 
-Como podemos ver nuestro MiniSpark es capaz de recibir peticiones Get y Post de manera adecuada.
-Por ultimo, si quisiera enviar algun archivo por un endpoint puedes usar el siguiente ejemplo.
-
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/a642e76f-3358-4b59-8237-f39d9df660a1)
-
-Y al ingresar por http://localhost:5500/gato podremós ver el archivo cargado.
-
-![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/a3886f6f-a80c-4ee4-886f-73e6f1761a88)
-
-Ya con esto estamos seguros que nuestro proyecto funciona correctamente.
+Y por medio de la consola podemos corroborar que las peticiones que se han realizarón son GET y POST.
 
 ## Otros Sistemas Operativos.
 
-Por ultimo con ayuda de Kali Linux correremos nuestro proyecto para ver si en diferente sistemas operativos puede ejecutarse.
+Por último con ayuda de Kali Linux correremos nuestro proyecto para ver si en diferentes sistemas operativos puede ejecutarse.
 
 ![image](https://github.com/wilmer-rodriguez-r/AREP_Taller03/assets/77862048/fa01d3d1-fc5a-40ce-8459-baa11252e778)
 
@@ -150,7 +140,6 @@ GNU General Public License family
 ## Agradecimientos
 
 * Luis Daniel Benavides Navarro
-* [perwendel](https://github.com/perwendel)
 
 ## Referencias
 

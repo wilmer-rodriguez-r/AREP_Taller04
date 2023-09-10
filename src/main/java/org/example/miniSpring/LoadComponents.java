@@ -4,7 +4,6 @@ import org.example.handlers.Request;
 import org.example.miniSpring.annotations.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.*;
 import java.io.*;
 
@@ -21,7 +20,10 @@ public class LoadComponents {
      * Guarda los endpoint con sus respectivos métodos.
      */
     public static Map<String, Method> servicePost = new HashMap<>();
-
+    /**
+     * Path del directorio raíz.
+     */
+    public static String path = "./target/classes/org/example";
     /**
      * Busca entre una lista de clases las que posean anotaciones para cargarlas.
      * @param classes List que son todas las clases del paquete.
@@ -48,21 +50,14 @@ public class LoadComponents {
 
     /**
      * A partir del path del paquete principal, se busca recursivamente las clases.
-     * @param path el path del paquete.
      * @return List de clases con todas las clases que se encontraron.
      * @throws ClassNotFoundException Cuando la clase no se encuentra.
      */
-    public static List<Class<?>> getClasses(String path) throws ClassNotFoundException {
+    public static List<Class<?>> getClasses() throws ClassNotFoundException {
         List<Class<?>> classes = new ArrayList<>();
-        String packageNamePath = path.replace(".", "/");
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-
-        URL packageURL = classLoader.getResource(packageNamePath);
-        assert packageURL != null;
-        String packagePath = packageURL.getPath();
-        File file = new File(packagePath);
-        getClasses(classLoader, classes, file, path.split("\\.")[0]);
-
+        File file = new File(path);
+        getClasses(classLoader, classes, file, "org");
         return classes;
     }
 

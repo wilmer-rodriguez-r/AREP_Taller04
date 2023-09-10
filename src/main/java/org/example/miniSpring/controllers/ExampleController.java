@@ -4,6 +4,8 @@ import org.example.handlers.Request;
 import org.example.miniSpring.annotations.Component;
 import org.example.miniSpring.annotations.GetMapping;
 import org.example.miniSpring.annotations.PostMapping;
+import org.json.JSONObject;
+
 import java.util.*;
 
 /**
@@ -12,7 +14,7 @@ import java.util.*;
 @Component
 public class ExampleController {
 
-    private static final Map<String, String> persistenceExample = new HashMap<>();
+    private static final Map<String, JSONObject> persistenceExample = new HashMap<>();
 
     /**
      * Método que se encarga del obtener una persona.
@@ -22,8 +24,10 @@ public class ExampleController {
     @GetMapping("/hello?{name}")
     public static String getPerson(Request request) {
         String param = request.getParam("name");
-        if (persistenceExample.containsKey(param))
-            return "Hola: " + param;
+        if (persistenceExample.containsKey(param)) {
+            JSONObject jsonObject = persistenceExample.get(param);
+            return "Hola: " + jsonObject.get("name") +" "+ jsonObject.get("lastName");
+        }
         return "La persona no existe";
     }
 
@@ -34,9 +38,8 @@ public class ExampleController {
      */
     @PostMapping("/hello")
     public static String postPerson(Request request) {
-        String body = request.getBody();
-        String key = body.split("\"")[3];
-        persistenceExample.put(key, request.getBody());
-        return "La persona: " + key + " fue añadida";
+        JSONObject body = request.getBody();
+        persistenceExample.put(body.getString("name"), body);
+        return "La persona: " + body.getString("name") + " fue añadida";
     }
 }

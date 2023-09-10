@@ -26,7 +26,9 @@
 <form action="/hellopost">
     <label for="postName">Name:</label><br>
     <input type="text" id="postName" name="name" value="John"><br><br>
-    <input type="button" value="Submit" onclick="app.post($('#postName').val())">
+    <label for="postLastName">Last Name:</label><br>
+    <input type="text" id="postLastName" name="name" value="Cena"><br><br>
+    <input type="button" value="Submit" onclick="app.post($('#postName').val(), $('#postLastName').val())">
 </form>
 
 <div id="postrespmsg"></div>

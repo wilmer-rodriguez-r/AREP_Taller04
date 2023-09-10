@@ -1,5 +1,7 @@
 package org.example.handlers;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -120,8 +122,8 @@ public class Request {
      * Obtiene el body de la petición.
      * @return JSONObject el body respectivo.
      */
-    public String getBody() {
-        return body;
+    public JSONObject getBody() {
+        return new JSONObject(body);
     }
 
     /**
